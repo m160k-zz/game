@@ -8,7 +8,8 @@
 
     <persistence-unit name="myPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>guest.Guest</class>
+        <class>org.game.db.table.Question</class>
+        <class>org.game.db.table.Answer</class>
         <properties>
 	        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/test"></property>
 	        <property name="hibernate.connection.username" value="root"></property>

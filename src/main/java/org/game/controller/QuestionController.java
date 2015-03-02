@@ -1,25 +1,27 @@
-package guest;
+package org.game.controller;
  
 import javax.servlet.http.HttpServletRequest;
+
+import org.game.db.dao.QuestionDao;
+import org.game.db.domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
  
 @Controller
-public class GuestController {
+public class QuestionController {
  
     @Autowired
-    private GuestDao guestDao;
+    private QuestionDao guestDao;
  
     @RequestMapping(value="/guest")
     public ModelAndView guestbook(HttpServletRequest request) {
         // Handle a new guest (if any):
-        String name = request.getParameter("name");
-        if (name != null)
-            guestDao.persist(new Guest(name));
+        String value = request.getParameter("name");
+        if (value != null)
+            guestDao.persist(new Question(value));
  
-        // Prepare the result view (guest.jsp):
         return new ModelAndView("guest", "guestDao", guestDao);
     }
 }
