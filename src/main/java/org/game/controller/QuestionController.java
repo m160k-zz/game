@@ -13,15 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class QuestionController {
  
     @Autowired
-    private QuestionDao guestDao;
+    private QuestionDao questDao;
  
     @RequestMapping(value="/guest")
     public ModelAndView guestbook(HttpServletRequest request) {
         // Handle a new guest (if any):
         String value = request.getParameter("name");
         if (value != null)
-            guestDao.persist(new Question(value));
+            questDao.persist(new Question(value));
  
-        return new ModelAndView("guest", "guestDao", guestDao);
+        return new ModelAndView("guest", "questDao", questDao);
     }
 }

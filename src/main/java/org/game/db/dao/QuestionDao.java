@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.game.db.domain.Answer;
 import org.game.db.domain.Question;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +23,14 @@ public class QuestionDao {
     }
  
     // Retrieves all the guests:
-    public List<Question> getAllGuests() {
+    public List<Question> getAllQuests() {
     	TypedQuery<Question> query = em.createQuery(
-            "SELECT g FROM Guest g ORDER BY g.id", Question.class);
+            "SELECT q FROM Question q", Question.class);
+    	for(Question q : query.getResultList()) {
+    		for(Answer a : q.getAnswers()) {
+    			System.out.println(a.getValue());
+    		}
+    	}
     	return query.getResultList();
     }
 }

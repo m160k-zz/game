@@ -18,10 +18,17 @@ public class Question implements Serializable {
     
     private String value;
     
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "question")
     private Collection<Answer> answers;
  
-    public Question() {
+    public Collection<Answer> getAnswers() {
+		return answers;
+	}
+	public void setAnswers(Collection<Answer> answers) {
+		this.answers = answers;
+	}
+
+	public Question() {
     }
  
     public Question(String value) {
