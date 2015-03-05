@@ -3,7 +3,10 @@ package org.game.db.domain;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -14,6 +17,7 @@ public class Question implements Serializable {
  
     @Id 
     @GeneratedValue
+    @Column(name = "questionId")
     Long questionId;
     
     private String value;
@@ -25,7 +29,7 @@ public class Question implements Serializable {
 		this.value = value;
 	}
 
-	@OneToMany(mappedBy = "question")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
     private Collection<Answer> answers;
  
     public Collection<Answer> getAnswers() {
@@ -40,6 +44,15 @@ public class Question implements Serializable {
  
     public Question(String value) {
         this.value = value;
+    }
+    
+    @Override
+    public String toString() {
+    	String res = value + "<br>";
+    	for(Answer ans : answers) {
+    		res += "- " + ans + "<br>";
+    	}
+        return res;
     }
  
 }

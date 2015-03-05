@@ -22,6 +22,6 @@ public class QuestionController {
         if (value != null)
             questDao.persist(new Question(value));
  
-        return new ModelAndView("guest", "questDao", questDao);
+        return new ModelAndView("quest", "questDao", questDao);
     }
 }

@@ -26,11 +26,11 @@ public class QuestionDao {
     public List<Question> getAllQuests() {
     	TypedQuery<Question> query = em.createQuery(
             "SELECT q FROM Question q", Question.class);
-    	for(Question q : query.getResultList()) {
-    		for(Answer a : q.getAnswers()) {
-    			System.out.println(a.getValue());
-    		}
-    	}
+//    	for(Question q : query.getResultList()) {
+//    		for(Answer a : q.getAnswers()) {
+//    			System.out.println(a.getValue());
+//    		}
+//    	}
     	return query.getResultList();
     }
 }
