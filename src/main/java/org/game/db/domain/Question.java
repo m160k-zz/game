@@ -19,26 +19,10 @@ public class Question implements Serializable {
     @GeneratedValue
     @Column(name = "questionId")
     Long questionId;
-    
     private String value;
-    
-    public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
-	}
-
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
     private Collection<Answer> answers;
  
-    public Collection<Answer> getAnswers() {
-		return answers;
-	}
-	public void setAnswers(Collection<Answer> answers) {
-		this.answers = answers;
-	}
-
 	public Question() {
     }
  
@@ -55,4 +39,20 @@ public class Question implements Serializable {
         return res;
     }
  
+    public Collection<Answer> getAnswers() {
+		return answers;
+	}
+    
+	public void setAnswers(Collection<Answer> answers) {
+		this.answers = answers;
+	}
+	
+	public String getValue() {
+		return value;
+	}
+	
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
 }
