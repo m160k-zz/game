@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
  
 @Entity
 public class Question implements Serializable {
@@ -21,6 +23,7 @@ public class Question implements Serializable {
     Long questionId;
     private String value;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
+	@JsonManagedReference
     private Collection<Answer> answers;
  
 	public Question() {
