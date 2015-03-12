@@ -45,8 +45,9 @@ public class AdminController {
     }
     
     @RequestMapping(value = "/getQuestions")
-    public @ResponseBody String getQuestions() {
-        return questDao.getAllQuests().toString();//FIXME this should not return toString. return JSON instead.
+    public @ResponseBody List<Question> getQuestions() {
+    	return questDao.getAllQuests();
+    	//FIXME this should not return toString. return JSON instead.
     }
     
     
