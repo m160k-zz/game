@@ -25,6 +25,7 @@ $(document).ready(function() {
 function getQuestions() {
     $.ajax({
         url : 'getQuestions.html',
+       // dataType: 'json',
         success : function(data) {
             $('#questions').html(JSON.stringify(data));
         }

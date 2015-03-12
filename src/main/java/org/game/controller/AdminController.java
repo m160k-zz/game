@@ -1,9 +1,7 @@
 package org.game.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -50,5 +48,12 @@ public class AdminController {
     public @ResponseBody String getQuestions() {
         return questDao.getAllQuests().toString();//FIXME this should not return toString. return JSON instead.
     }
+    
+    
+//    @RequestMapping(value = "/getQuestions")
+//    public @ResponseBody List<Question> getQuestions() {
+//    	return questDao.getAllQuests();
+//    	//FIXME this should not return toString. return JSON instead.
+//    }
 	
 }
