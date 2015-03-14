@@ -10,14 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
- 
+
+//POJO plain old java object
 @Entity
 public class Answer implements Serializable {
     private static final long serialVersionUID = 1L;
  
     @Id 
     @GeneratedValue
-    Long answerId;
+    public Long answerId;
     private String value;
 	private Long isCorrect;
     @ManyToOne(cascade=CascadeType.ALL)

@@ -30,6 +30,5 @@ public class AnswerDao {
     		}
     	}
     	return query.getResultList();
-    }
-
+    }      
 }
