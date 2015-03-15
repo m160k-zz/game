@@ -18,7 +18,7 @@ public class Answer implements Serializable {
  
     @Id 
     @GeneratedValue
-    public Long answerId;
+    Long answerId;
     private String value;
 	private Long isCorrect;
     @ManyToOne(cascade=CascadeType.ALL)
@@ -62,6 +62,14 @@ public class Answer implements Serializable {
 
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	public Long getAnswerId() {
+		return answerId;
+	}
+
+	public void setAnswerId(Long answerId) {
+		this.answerId = answerId;
 	}
     
 }

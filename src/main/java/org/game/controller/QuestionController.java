@@ -25,15 +25,13 @@ public class QuestionController {
     }
     
     @RequestMapping(value = "/isCorrect", method = RequestMethod.GET)
-    //TODO Task #3. check the DB if the given answer is the correct one, 
-	//for the given question. 
     public @ResponseBody Boolean isCorrect(@RequestParam("questionId") Long questionId, 
     		@RequestParam("answerId") Long answerId) {
     	Long correct = 0l;
     	Question quest = questDao.getQuestion(questionId);
     	Collection<Answer> answers = quest.getAnswers();
     	for(Answer a : answers) {
-    		if(a.answerId.equals(answerId)) {
+    		if(a.getAnswerId().equals(answerId)) {
     			correct = a.getIsCorrect();
     		}
     	}
