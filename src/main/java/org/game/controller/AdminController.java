@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 
 import org.game.db.dao.QuestionDao;
+import org.game.db.dao.UserDao;
 import org.game.db.domain.Answer;
 import org.game.db.domain.Question;
+import org.game.db.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +23,17 @@ public class AdminController {
 
     @Autowired
     private QuestionDao questDao;
+    @Autowired
+    private UserDao userDao;
  
     @RequestMapping(value="/admin")
     public ModelAndView admin(HttpServletRequest request) {
         return new ModelAndView("admin");
+    }
+    
+    @RequestMapping(value="/login")
+    public ModelAndView login(HttpServletRequest request) {
+        return new ModelAndView("login");
     }
     
     @RequestMapping(value="/addQuestion", method = RequestMethod.POST)
@@ -60,17 +69,20 @@ public class AdminController {
         return new ModelAndView("admin");
     }
     
+    @RequestMapping(value="/addUser", method = RequestMethod.POST)
+    public ModelAndView addUser(HttpServletRequest request) {
+    	User user = new User();
+    	user.setUsername(request.getParameter("user"));
+    	user.setPassword(request.getParameter("password"));
+    	
+    	userDao.persist(user);
+    	
+        return new ModelAndView("admin");
+    }
+    
     @RequestMapping(value = "/getQuestions")
     public @ResponseBody List<Question> getQuestions() {
     	return questDao.getAllQuests();
-    	//FIXME this should not return toString. return JSON instead.
-    }
-    
-    
-//    @RequestMapping(value = "/getQuestions")
-//    public @ResponseBody List<Question> getQuestions() {
-//    	return questDao.getAllQuests();
-//    	//FIXME this should not return toString. return JSON instead.
-//    }
-	
+    	//return JSON instead of string
+    }    	
 }

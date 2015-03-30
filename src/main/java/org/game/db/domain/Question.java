@@ -25,6 +25,7 @@ public class Question implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
 	@JsonManagedReference
     private Collection<Answer> answers;
+	
  
 	public Question() {
     }

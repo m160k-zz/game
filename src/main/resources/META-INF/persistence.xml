@@ -10,6 +10,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>org.game.db.domain.Question</class>
         <class>org.game.db.domain.Answer</class>
+        <class>org.game.db.domain.User</class>
         <properties>
 	        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/test"></property>
 	        <property name="hibernate.connection.username" value="root"></property>

@@ -37,15 +37,16 @@ function getQuestions() {
 
 $(document).ready(function() {
 	$(".ans1").click(validate);
-    $('input[type="submit"]').prop('disabled','disabled');
+    $('#submit').prop('disabled','disabled');
     $('.ans').keyup(validate);
+    // $('#submit') instead of $('input[type="submit"]')
 });
 
 function validate() {
 	if(isValid()) {
-		$('input[type="submit"]').removeAttr('disabled');
+		$('#submit').removeAttr('disabled');
 	} else {
-		$('input[type="submit"]').prop('disabled', 'disabled');
+		$('#submit').prop('disabled', 'disabled');
 	}
 }
 
@@ -91,6 +92,15 @@ function isTxtValid() {
 		    <input type="radio" class="ans1" value="4" name="answer" id="radio4" /><br>
 		    <br>
 		    <input type="submit" value="Submit" id="submit" /> 
+		</form>
+    </div>
+    <div>
+        <form id="addUser" action="addUser" method="post"> 
+		    <label for="username">Username: </label><input type="text" name="user" id="username" class="users" />
+		    <br><br>
+		    <label for="pass">Password: </label>
+		    <input type="password" class="users" name="password" id="pass" />
+		    <input type="submit" value="Submit" id="submit2" />		    
 		</form>
     </div>
     <button>Show/Hide Questions</button>
