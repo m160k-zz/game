@@ -6,9 +6,40 @@ body {
         url('http://cdn3.crunchify.com/wp-content/uploads/2013/03/Crunchify.bg_.300.png');
 }
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+<!-- Include jqGrid script file. -->
+<script src="/game/js/jquery.jqGrid.min.js" type="text/javascript"></script>  
+
+<!-- Include jqGrid styles. -->
+<link href="/game/js/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+ 
 <script>
 var showQuestions;
+
+$(document).ready(function() {
+jQuery("#list").jqGrid({
+    url:'getQuestions',
+	datatype: "json",
+    colNames:['id','Name', 'Questions'],
+    colModel:[
+    {name:'id',index:'id', width:55},
+	{name:'name',index:'name', width:100},
+    {name:'questions',index:'questions', width:600},
+    ],
+    rowNum:10,
+    rowList:[10,20,30],
+    pager: '#pager',
+    sortname: 'id',
+    viewrecords: true,
+    sortorder: "desc",
+    caption:"Questions"
+});
+
+jQuery("#list").jqGrid('navGrid','#pager',{edit:false,add:false,del:false});
+});
 
 $(document).ready(function() {
 	showQuestions = 0;
@@ -20,9 +51,8 @@ $(document).ready(function() {
 			$('#questions').hide();
 			showQuestions = 0;
 		}
-		getQuestions();
-	}); 
-	
+		//getQuestions();	
+	}); 	
 });
 
 function getQuestions() {
@@ -34,6 +64,7 @@ function getQuestions() {
         }
     });
 }
+ 
 
 $(document).ready(function() {
 	$(".ans1").click(validate);
@@ -70,7 +101,6 @@ function isTxtValid() {
 	}
 	return false;
 }
-
 </script>
 </head>
 <body>
@@ -94,16 +124,8 @@ function isTxtValid() {
 		    <input type="submit" value="Submit" id="submit" /> 
 		</form>
     </div>
-    <div>
-        <form id="addUser" action="addUser" method="post"> 
-		    <label for="username">Username: </label><input type="text" name="user" id="username" class="users" />
-		    <br><br>
-		    <label for="pass">Password: </label>
-		    <input type="password" class="users" name="password" id="pass" />
-		    <input type="submit" value="Submit" id="submit2" />		    
-		</form>
-    </div>
+    <div id="list"></div>
+    <div id="pager"></div>
     <button>Show/Hide Questions</button>
-    <div id="questions"></div>
 </body>
 </html>

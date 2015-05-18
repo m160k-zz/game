@@ -79,7 +79,7 @@ public class AdminController {
     	
         return new ModelAndView("admin");
     }
-    
+              
     @RequestMapping(value = "/getQuestions")
     public @ResponseBody List<Question> getQuestions() {
     	return questDao.getAllQuests();

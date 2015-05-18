@@ -1,10 +1,17 @@
 package org.game.db.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class User implements Serializable {
@@ -13,10 +20,35 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long userId;
+	@Column(name = "userId")
+	Long userId;
+	
+	public boolean equals(Object obj) {
+		User tmpUsr = (User)obj;
+		if(tmpUsr.username.equals(this.username) && tmpUsr.password.equals(this.password)) {
+			return true;
+		} else {
+			return false;
+		}
+    }
+	
+	
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Collection<Question> question;
+	
 	private String username;
 	private String password;
+	public Collection<Question> getQuestion() {
+		return question;
+	}
 
+	public void setQuestion(Collection<Question> question) {
+		this.question = question;
+	}
+
+	
 	public User() {
 	}
 
