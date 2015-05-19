@@ -1,7 +1,7 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Log in</title>
 <style type="text/css">
 	body {
@@ -29,14 +29,14 @@
 </style>
 </head>
 <body>
- <div>
-        <form id="addUser" action="addUser" method="post"> 
-		    <label for="username">Потребителско име: </label><input type="text" name="user" id="username" class="users" />
-		    <br><br>
-		    <label for="pass">Парола: </label>
-		    <input type="password" class="users" name="password" id="pass" />
-		    <input type="submit" id="submit" value="Log in" />		    
+	<div>
+		<form id="addUser" action="addUser" method="post"> 
+			<label for="username">Username: </label><input type="text" name="user" id="username" class="users" />
+			<br><br>
+			<label for="pass">Password: </label>
+			<input type="password" class="users" name="password" id="pass" />
+			<input type="submit" id="submit" value="Log in" />		    
 		</form>
-    </div>
+	</div>
 </body>
 </html>
